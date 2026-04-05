@@ -10,7 +10,7 @@ This folder contains a collection of simple Node.js HTTP servers, each demonstra
 - **How to Run**:
   1. Open a terminal in this folder.
   2. Run `node plain-text-server.js`.
-  3. (Optional) For development with auto-restart on file changes, run `nodemon plain-text-server.js` (requires nodemon to be installed).
+  3. (Optional) For development with auto-restart on file changes, run `npx nodemon plain-text-server.js` (uses the locally installed nodemon).
   4. Open a browser or use a tool like curl: `curl http://localhost:3000`.
   5. Expected Response: "Hello World" as plain text.
 - **Functionality**: Logs request details (headers, URL, method) and responds with a simple text message.
@@ -21,7 +21,7 @@ This folder contains a collection of simple Node.js HTTP servers, each demonstra
 - **How to Run**:
   1. Open a terminal in this folder.
   2. Run `node html-server.js`.
-  3. (Optional) For development with auto-restart on file changes, run `nodemon html-server.js` (requires nodemon to be installed).
+  3. (Optional) For development with auto-restart on file changes, run `npx nodemon html-server.js` (uses the locally installed nodemon).
   4. Open a browser: `http://localhost:3000`.
   5. Expected Response: "Hello World" rendered as an H1 heading in HTML.
 - **Functionality**: Logs request details and responds with HTML content.
@@ -32,7 +32,7 @@ This folder contains a collection of simple Node.js HTTP servers, each demonstra
 - **How to Run**:
   1. Open a terminal in this folder.
   2. Run `node json-server.js`.
-  3. (Optional) For development with auto-restart on file changes, run `nodemon json-server.js` (requires nodemon to be installed).
+  3. (Optional) For development with auto-restart on file changes, run `npx nodemon json-server.js` (uses the locally installed nodemon).
   4. Use curl or a REST client: `curl http://localhost:3000`.
   5. Expected Response: A JSON object `{"My message": "Hello World"}`.
 - **Functionality**: Logs request details and responds with JSON data.
@@ -43,7 +43,7 @@ This folder contains a collection of simple Node.js HTTP servers, each demonstra
 - **How to Run**:
   1. Open a terminal in this folder.
   2. Run `node post-echo-server.js`.
-  3. (Optional) For development with auto-restart on file changes, run `nodemon post-echo-server.js` (requires nodemon to be installed).
+  3. (Optional) For development with auto-restart on file changes, run `npx nodemon post-echo-server.js` (uses the locally installed nodemon).
   4. Use a tool like curl or Postman to send a POST request with JSON body: `curl -X POST -H "Content-Type: application/json" -d '{"key": "value"}' http://localhost:3000`.
   5. Expected Response: The sent JSON data echoed back.
 - **Functionality**: Collects POST data chunks, parses JSON, and sends it back. For non-POST requests, responds with a welcome message.
@@ -54,7 +54,7 @@ This folder contains a collection of simple Node.js HTTP servers, each demonstra
 - **How to Run**:
   1. Open a terminal in this folder.
   2. Run `node post-file-server.js`.
-  3. (Optional) For development with auto-restart on file changes, run `nodemon post-file-server.js` (requires nodemon to be installed).
+  3. (Optional) For development with auto-restart on file changes, run `npx nodemon post-file-server.js` (uses the locally installed nodemon).
   4. Use a tool like curl or Postman to send a POST request with JSON body containing `employees` array and `fileID`: `curl -X POST -H "Content-Type: application/json" -d '{"employees": [{"FirstName": "John", "LastName": "Doe", "Email": "john@example.com"}], "fileID": "01"}' http://localhost:3000`.
   5. Check the `Files/` folder for a new file (e.g., `01.txt`) with employee data.
   6. Expected Response: JSON message indicating success or if the file already exists.
@@ -64,7 +64,7 @@ This folder contains a collection of simple Node.js HTTP servers, each demonstra
 - All servers use built-in Node.js modules (`http`, `fs`, `path`) and log request details to the console for debugging.
 - Ensure the `Files/` directory exists for `post-file-server.js` (it should, based on your project structure).
 - To stop a server, use Ctrl+C in the terminal.
-- Nodemon is installed as a dev dependency for auto-restarting the server on file changes. Each server can be run with `nodemon filename.js` for development (as noted in each section).
+- Nodemon is installed as a dev dependency for auto-restarting the server on file changes. Each server can be run with `npx nodemon filename.js` for development (as noted in each section).
 - These are simplified examples for learning; in production, consider adding error handling, security, and using frameworks like Express.js.
 
 ## Original File
