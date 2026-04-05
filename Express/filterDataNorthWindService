@@ -1,0 +1,51 @@
+const express = require('express');
+const app = express();
+const env = require('dotenv');
+const axios = require('axios'); // imports the axios library, which is a popular HTTP client for making requests to external APIs. 
+// It allows us to send HTTP requests and handle responses in a simple and efficient way.
+
+env.config({
+    path: './config/config.env'
+});
+const PORT = process.env.PORT || 3000;
+
+const axios_instance = axios.create({
+    baseURL: 'https://services.odata.org/v4/northwind/northwind.svc',
+})
+//Access NorthWind Products Service
+app.get('/api/v1/NorthWind/Products/:id', async (req, res) => { // added /:id as a route parameter to allow filtering of products based 
+    // on their ID. This means that when a GET request is made to /api/v1/NorthWind/Products/1, for example, the value of req.params.id 
+    // will be '1',
+    // which can then be used to filter the products data from the NorthWind API and return only the product with the specified ID 
+    // in the response.
+    // Below are multiple modes. Please refer to code in line 19 and comment and uncomment individual modes before testing.
+
+    //Mode 3 - Using Async/ Await and filter data from NorthWind API
+
+    const ID = req.params.id; // retrieves the value of the id route parameter from the request object (req) and assigns 
+    // it to the variable ID.
+    const field = ID.split("=")[0];// filters the ID value to extract the field name (e.g., ProductID) from the ID string 
+    // using a regular expression. The match() method is used to find all non-whitespace characters followed by an equal sign (=) 
+    // in the ID string, and the [0] index is used to retrieve the first match, which is the field name.
+    console.log(field);
+    try {
+        const results = await axios_instance.get('/Products', {
+            params: {
+                $filter: `${field} eq ${ID.split('=')[1]}` // sets the $filter query parameter to filter the products data based on the 
+                // specified field and value. 
+                // The ID.split('=')[1] expression is used to extract the value from the ID string by splitting it at the equal 
+                // sign (=) and retrieving the second part (the value).
+            }
+        });
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).send(JSON.stringify(results.data.value));
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error fetching data from NorthWind API');
+    }
+})
+//Test API - http://localhost:4000/api/v1/NorthWind/Products/SupplierID=2 - create a GET request to the above URL to get the NorthWind products 
+// data in JSON format. 
+// You can use tools like Postman or curl to test the API.
+
+app.listen(PORT, console.log(`Listening to PORT: ${PORT} in ${process.env.NODE_ENV} mode for get filtered data from northwind service`)); // starts the Express server and listens on the specified PORT. 
