@@ -1,0 +1,39 @@
+@server=http://localhost:4004
+@username=alice
+@password=alice
+
+### Books
+# @name Books_GET
+GET {{server}}/service/CatalogService/Books
+
+### Books by ID
+GET {{server}}/service/CatalogService/Books(550e8400-e29b-41d4-a716-446655440000)
+
+### Insert a new Book
+POST {{server}}/service/CatalogService/Books
+Content-Type : application/json
+
+{
+    "title": "Wings of Fire",
+    "author": "APJ Abdul Kalam",
+    "price": 299.99,
+    "stock": 100
+}
+
+#In http PATCH modification of the existing record is done. Only the fields which are to be modified are sent in the request body. 
+#The rest of the fields remain unchanged. But PUT request requires the complete record to be sent in the request body. 
+#If any field is missing in the request body, it will be set to null in the database.
+
+### Update a Book
+PATCH {{server}}/service/CatalogService/Books(550e8400-e29b-41d4-a716-446655440000)
+Content-Type : application/json
+
+{
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "price": 299.99,
+    "stock": 100
+}
+
+### Delete a Book
+DELETE {{server}}/service/CatalogService/Books(550e8400-e29b-41d4-a716-446655440000)

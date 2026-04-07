@@ -1,0 +1,9 @@
+{
+    "actions": [
+        {
+            "id": "openReadmeFile",
+            "actionType": "FILE",
+            "uri": "file:///Users/debraj/Developer/SAP/CAPM/CAP-sample/.gen/generation.log"
+        }
+    ]
+}
