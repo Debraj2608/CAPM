@@ -25,6 +25,8 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: CAP-bookshop-db
+      - name: CAP-sample-auth
+      - name: CAP-sample-destination
 
   - name: CAP-bookshop-db-deployer
     type: hdb
@@ -40,3 +42,17 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: CAP-sample-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: CAP-sample-${org}-${space}
+        tenant-mode: dedicated
+  - name: CAP-sample-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite

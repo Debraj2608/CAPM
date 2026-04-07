@@ -5,7 +5,8 @@
   "dependencies": {
     "@cap-js/hana": "^2",
     "@sap/cds": "^9",
-    "express": "^4"
+    "express": "^4",
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2",
@@ -16,8 +17,46 @@
   },
   "private": true,
   "cds": {
-    "sql":{
+    "sql": {
       "native_hana_associations": false
+    },
+    "requires": {
+      "[production]": {
+        "auth": "xsuaa",
+        "db": "hana"
+      },
+      "auth": {
+        "[development]": {
+          "kind": "mocked",
+          "users": {
+            "admin": {
+              "password": "admin",
+              "roles": [
+                "Admin"
+              ]
+            },
+            "user": {
+              "password": "user",
+              "roles": [
+                "User"
+              ]
+            },
+            "candice": {
+              "password": "candice",
+              "roles": [
+                "User"
+              ]
+            },
+            "bob": {
+              "password": "bob",
+              "roles": [
+                "Admin"
+              ]
+            }
+          }
+        }
+      },
+      "destinations": true
     }
   }
 }
