@@ -1,5 +1,55 @@
 {
-  "scopes": [],
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin scope with full access to the application"
+    },
+    {
+      "name": "$XSAPPNAME.User",
+      "description": "User scope with limited access to the application"
+    }
+  ],
   "attributes": [],
-  "role-templates": []
+  "role-templates": [
+    {
+      "name": "Admin",
+      "description": "Role template for administrators",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    },
+    {
+      "name": "User",
+      "description": "Role template for regular users",
+      "scope-references": [
+        "$XSAPPNAME.User"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "Bookshop-Admin",
+      "description": "Role collection for administrators",
+      "role-template-references": [
+        "$XSAPPNAME.User"
+      ]
+    },
+    {
+      "name": "Bookshop-User",
+      "description": "Role collection for regular users",
+      "role-template-references": [
+        "$XSAPPNAME.User"
+      ]
+    }
+  ],
+  "authorities-inheritance": false,
+  "oauth2-configuration": {
+    "token-validity": 900,
+    "credential-types": [
+      "binding secret"
+    ],
+    "redirect-uris": [
+      "https://**.cfapps.eu10.hana.ondemand.com/**"
+    ]
+  }
 }
