@@ -1,5 +1,5 @@
-ID,title,author,price,stock
-550e8400-e29b-41d4-a716-446655440000,"The Great Gatsby","F. Scott Fitzgerald",10.99,100
-550e8400-e29b-41d4-a716-446655440001,"1984","George Orwell",12.50,50
-550e8400-e29b-41d4-a716-446655440002,"To Kill a Mockingbird","Harper Lee",9.99,75
-550e8400-e29b-41d4-a716-446655440003,"Pride and Prejudice","Jane Austen",11.25,60
+ID,title,author,price,stock,genre_code,createdAt,createdBy,modifiedAt,modifiedBy
+550e8400-e29b-41d4-a716-446655440000,"The Great Gatsby","F. Scott Fitzgerald",10.99,100,CLASSIC,2026-04-08T09:00:00Z,admin,2026-04-08T09:00:00Z,admin
+550e8400-e29b-41d4-a716-446655440001,"1984","George Orwell",12.50,50,DYSTOPIAN,2026-04-08T10:15:00Z,candice,2026-04-08T10:15:00Z,candice
+550e8400-e29b-41d4-a716-446655440002,"To Kill a Mockingbird","Harper Lee",9.99,75,LITERARY,2026-04-08T11:30:00Z,user,2026-04-08T11:30:00Z,user
+550e8400-e29b-41d4-a716-446655440003,"Pride and Prejudice","Jane Austen",11.25,60,CLASSIC,2026-04-08T12:45:00Z,bob,2026-04-08T12:45:00Z,bob
