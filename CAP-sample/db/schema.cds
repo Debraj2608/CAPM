@@ -8,6 +8,8 @@ entity Books: cuid, managed {
   price : Decimal(10,2);
   stock : Integer;
   genre : Association to one Genres;
+  shortDescription : String;
+  rating : Integer @assert.range:[1,5];
 }
 
 entity Orders: cuid, managed {
@@ -15,6 +17,10 @@ entity Orders: cuid, managed {
   orderItems : Composition of many OrderItems on orderItems.order = $self;
   totalPrice : Decimal(10,2);
   status : Association to one OrderStatus;
+  address : String;
+  contactNo: Integer @assert.format: '^[0-9]{10}$';
+  firstName : String;
+  lastName : String;
 }
 
 entity OrderItems: cuid, managed {

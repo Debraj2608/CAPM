@@ -92,11 +92,6 @@
           "pattern": "Orders({key}):?query:",
           "name": "OrdersObjectPage",
           "target": "OrdersObjectPage"
-        },
-        {
-          "pattern": "Orders({key})/orderItems({key2}):?query:",
-          "name": "OrderItemsObjectPage",
-          "target": "OrderItemsObjectPage"
         }
       ],
       "targets": {
@@ -145,24 +140,7 @@
             "settings": {
               "editableHeaderContent": false,
               "contextPath": "/Orders",
-              "navigation": {
-                "orderItems": {
-                  "detail": {
-                    "route": "OrderItemsObjectPage"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "OrderItemsObjectPage": {
-          "type": "Component",
-          "id": "OrderItemsObjectPage",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "editableHeaderContent": false,
-              "contextPath": "/Orders/orderItems"
+              "navigation": {}
             }
           }
         }

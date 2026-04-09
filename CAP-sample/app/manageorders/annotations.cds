@@ -7,17 +7,12 @@ annotate service.Orders with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'orderNumber',
-                Value : orderNumber,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'totalPrice',
+                Label : '{i18n>TotalPrice}',
                 Value : totalPrice,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'status_code',
+                Label : '{i18n>Status}',
                 Value : status_code,
             },
         ],

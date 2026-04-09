@@ -1,5 +1,10 @@
-ID,title,author,price,stock,genre_code,createdAt,createdBy,modifiedAt,modifiedBy
-550e8400-e29b-41d4-a716-446655440000,"The Great Gatsby","F. Scott Fitzgerald",10.99,100,CLASSIC,2026-04-08T09:00:00Z,admin,2026-04-08T09:00:00Z,admin
-550e8400-e29b-41d4-a716-446655440001,"1984","George Orwell",12.50,50,DYSTOPIAN,2026-04-08T10:15:00Z,candice,2026-04-08T10:15:00Z,candice
-550e8400-e29b-41d4-a716-446655440002,"To Kill a Mockingbird","Harper Lee",9.99,75,LITERARY,2026-04-08T11:30:00Z,user,2026-04-08T11:30:00Z,user
-550e8400-e29b-41d4-a716-446655440003,"Pride and Prejudice","Jane Austen",11.25,60,CLASSIC,2026-04-08T12:45:00Z,bob,2026-04-08T12:45:00Z,bob
+ID,title,author,price,stock,genre_code,shortDescription,rating,createdAt,createdBy,modifiedAt,modifiedBy
+550e8400-e29b-41d4-a716-446655440000,"The Great Gatsby","F. Scott Fitzgerald",10.99,100,CLASSIC,"A timeless classic exploring wealth and romance in the Jazz Age",5,2026-04-08T09:00:00Z,admin,2026-04-08T09:00:00Z,admin
+550e8400-e29b-41d4-a716-446655440001,"1984","George Orwell",12.50,50,DYSTOPIAN,"A chilling dystopian novel about totalitarianism and surveillance",5,2026-04-08T10:15:00Z,candice,2026-04-08T10:15:00Z,candice
+550e8400-e29b-41d4-a716-446655440002,"To Kill a Mockingbird","Harper Lee",9.99,75,LITERARY,"A powerful story of racial injustice and moral growth in the South",5,2026-04-08T11:30:00Z,user,2026-04-08T11:30:00Z,user
+550e8400-e29b-41d4-a716-446655440003,"Pride and Prejudice","Jane Austen",11.25,60,CLASSIC,"A witty romance about misunderstandings and first impressions",5,2026-04-08T12:45:00Z,bob,2026-04-08T12:45:00Z,bob
+550e8400-e29b-41d4-a716-446655440004,"The Hobbit","J.R.R. Tolkien",13.99,120,FANTASY,"An epic fantasy adventure with dragons, dwarves, and magic",5,2026-04-09T08:00:00Z,admin,2026-04-09T08:00:00Z,admin
+550e8400-e29b-41d4-a716-446655440005,"Brave New World","Aldous Huxley",12.00,45,DYSTOPIAN,"A future society built on happiness and genetic engineering",4,2026-04-09T09:30:00Z,user,2026-04-09T09:30:00Z,user
+550e8400-e29b-41d4-a716-446655440006,"The Catcher in the Rye","J.D. Salinger",10.50,80,LITERARY,"Coming-of-age story about teenage angst and alienation",4,2026-04-09T10:45:00Z,candice,2026-04-09T10:45:00Z,candice
+550e8400-e29b-41d4-a716-446655440007,"The Lord of the Rings","J.R.R. Tolkien",24.99,30,FANTASY,"Epic fantasy epic of magic rings and quests to save the world",5,2026-04-09T12:00:00Z,bob,2026-04-09T12:00:00Z,bob
+550e8400-e29b-41d4-a716-446655440008,"Dune","Frank Herbert",14.50,55,FANTASY,"A grand space opera about politics, religion, and desert survival",5,2026-04-09T13:30:00Z,user,2026-04-09T13:30:00Z,user
