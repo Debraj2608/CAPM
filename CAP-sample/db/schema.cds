@@ -2,6 +2,8 @@ namespace my.bookshop;
 
 using {cuid, managed, sap.common.CodeList} from '@sap/cds/common';
 
+using {Country} from '@sap/cds-common-content';
+
 entity Books: cuid, managed {
   title : String;
   author : String;
@@ -10,6 +12,7 @@ entity Books: cuid, managed {
   genre : Association to one Genres;
   shortDescription : String;
   rating : Integer @assert.range:[1,5];
+  orderItems : Association to many OrderItems on orderItems.book = $self;
 }
 
 entity Orders: cuid, managed {
@@ -18,9 +21,11 @@ entity Orders: cuid, managed {
   totalPrice : Decimal(10,2);
   status : Association to one OrderStatus;
   address : String;
+  Country : Country;
   contactNo: Integer @assert.format: '^[0-9]{10}$';
   firstName : String;
   lastName : String;
+  email : String @assert.format: 'email';
 }
 
 entity OrderItems: cuid, managed {
