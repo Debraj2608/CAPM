@@ -1,5 +1,5 @@
-code,description,criticality
-CLASSIC,Classic literature with enduring themes and broad appeal,1
-DYSTOPIAN,Speculative fiction about surveillance and social control,2
-LITERARY,Fiction focused on character depth and narrative style,2
-FANTASY,Imaginative fiction with magical worlds and adventure,3
+code,name,description,criticality
+CLASSIC,Classic, Classic literature with enduring themes and broad appeal,1
+DYSTOPIAN,Dystopian, Speculative fiction about surveillance and social control,2
+LITERARY,Literary, Fiction focused on character depth and narrative style,2
+FANTASY,Fantasy, Imaginative fiction with magical worlds and adventure,3

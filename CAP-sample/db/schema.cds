@@ -16,7 +16,7 @@ entity Books: cuid, managed {
 }
 
 entity Orders: cuid, managed {
-  orderNumber : String;
+  orderNumber : String @readonly;
   orderItems : Composition of many OrderItems on orderItems.order = $self;
   totalPrice : Decimal(10,2);
   status : Association to one OrderStatus;
