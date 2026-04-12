@@ -18,8 +18,8 @@ entity Books: cuid, managed {
 entity Orders: cuid, managed {
   orderNumber : String @readonly;
   orderItems : Composition of many OrderItems on orderItems.order = $self;
-  totalPrice : Decimal(10,2);
-  status : Association to one OrderStatus;
+  totalPrice : Decimal(10,2) @readonly;
+  status : Association to one OrderStatus @readonly;
   address : String @mandatory;
   Country : Country @mandatory;
   contactNo : String(10) @assert.format: '^[0-9]{10}$' @mandatory;
