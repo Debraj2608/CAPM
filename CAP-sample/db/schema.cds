@@ -22,10 +22,10 @@ entity Orders: cuid, managed {
   status : Association to one OrderStatus;
   address : String;
   Country : Country;
-  contactNo: Integer @assert.format: '^[0-9]{10}$';
+  contactNo : String(10) @assert.format: '^[0-9]{10}$';
   firstName : String;
   lastName : String;
-  email : String @assert.format: 'email';
+  email : String @assert.format: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' @Communication.IsEmailAddress;
 }
 
 entity OrderItems: cuid, managed {

@@ -9,6 +9,36 @@ annotate service.Orders with @(
         Data : [
             {
                 $Type : 'UI.DataField',
+                Value : firstName,
+                Label : '{i18n>YourFirstName}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : lastName,
+                Label : 'Your Last Name',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : contactNo,
+                Label : '{i18n>YourPhoneNumber}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : email,
+                Label : '{i18n>YourEmailId}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : address,
+                Label : '{i18n>DeliveryAddress}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Country_code,
+                Label : 'Country',
+            },
+            {
+                $Type : 'UI.DataField',
                 Label : '{i18n>TotalPrice}',
                 Value : totalPrice,
             },
@@ -16,11 +46,8 @@ annotate service.Orders with @(
                 $Type : 'UI.DataField',
                 Label : '{i18n>Status}',
                 Value : status_code,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : Country_code,
-                Label : 'Country',
+                Criticality : status.criticality,
+                CriticalityRepresentation : #WithoutIcon,
             },
         ],
     },
@@ -28,8 +55,14 @@ annotate service.Orders with @(
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
-            Label : 'General Information',
+            Label : '{i18n>DeliveryInformation}',
             Target : '@UI.FieldGroup#GeneratedGroup',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : '{i18n>OrderItems}',
+            ID : 'OrderItems',
+            Target : 'orderItems/@UI.LineItem#OrderItems',
         },
     ],
     UI.LineItem : [
@@ -48,14 +81,31 @@ annotate service.Orders with @(
             Label : '{i18n>Status}',
             Value : status_code,
             Criticality : status.criticality,
-            CriticalityRepresentation : #WithIcon,
+            CriticalityRepresentation : #WithoutIcon,
+        },
+    ],
+    UI.HeaderInfo : {
+        Title : {
+            $Type : 'UI.DataField',
+            Value : orderNumber,
+        },
+        TypeName : '',
+        TypeNamePlural : '',
+    },
+    UI.Identification : [
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'OrderService.placeOrder',
+            Label : 'Place Order',
+            Criticality : #Positive,
+            ![@UI.Hidden]: { $edmJson: {$Ne: { $Path: 'IsActiveEntity' },false} }
         },
     ],
 );
 
 annotate service.Orders with {
     status @(
-        Common.Text : status.description,
+        Common.Text : status.name,
         Common.Text.@UI.TextArrangement : #TextOnly,
         )
 };
@@ -91,5 +141,89 @@ annotate service.Countries with {
     code @(
         Common.Text : name,
         Common.Text.@UI.TextArrangement : #TextOnly,
+)};
+
+annotate service.Orders with {
+    address @UI.MultiLineText : true
+};
+
+annotate service.OrderItems with @(
+    UI.LineItem #OrderItems : [
+        {
+            $Type : 'UI.DataField',
+            Value : book_ID,
+            Label : '{i18n>Book}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : quantity,
+            Label : '{i18n>Quantity}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : book.author,
+            Label : '{i18n>Author}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : book.genre.name,
+            Label : '{i18n>Genre}',
+        },
+    ]
+);
+
+annotate service.OrderItems with {
+    book @(
+        Common.Text : book.title,
+        Common.Text.@UI.TextArrangement : #TextOnly,
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Books',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : book_ID,
+                    ValueListProperty : 'ID',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'author',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'price',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'genre/name',
+                },
+            ],
+            Label : 'Book',
+        },
+        Common.ValueListWithFixedValues : false,
+    )
+};
+
+annotate service.Books with {
+    ID @(
+        Common.Text : title,
+        Common.Text.@UI.TextArrangement : #TextOnly,
+        Common.Label: 'Book'
+)};
+
+annotate service.Books with {
+    author @(
+        Common.Label: 'Author')
+};
+
+annotate service.Books with {
+    price @(
+        Common.Label: 'Price')
+};
+
+annotate service.Genres with {
+    name @(
+        Common.FieldControl : #ReadOnly,
+        Common.Label: 'Genre'
 )};
 

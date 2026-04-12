@@ -1,8 +1,10 @@
 const cds = require('@sap/cds');
-class catService extends cds.ApplicationService {
+class CatalogService extends cds.ApplicationService {
     async init(){
 
+
+        return super.init();
     }
 }
 
-module.exports = {catService};
+module.exports = {CatalogService};

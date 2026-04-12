@@ -140,7 +140,25 @@
             "settings": {
               "editableHeaderContent": false,
               "contextPath": "/Orders",
-              "navigation": {}
+              "navigation": {},
+              "controlConfiguration": {
+                "orderItems/@com.sap.vocabularies.UI.v1.LineItem#OrderItems": {
+                  "columns": {
+                    "DataField::book_ID": {
+                      "width": "100%"
+                    },
+                    "DataField::quantity": {
+                      "width": "100%"
+                    },
+                    "DataField::book::author": {
+                      "width": "100%"
+                    },
+                    "DataField::book::genre::name": {
+                      "width": "100%"
+                    }
+                  }
+                }
+              }
             }
           }
         }

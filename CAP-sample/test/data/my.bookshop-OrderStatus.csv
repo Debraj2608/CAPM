@@ -1,5 +1,7 @@
-code,description,criticality
-PENDING,Order has been placed and is awaiting processing,1
-SHIPPED,Order has been packed and sent to the shipping carrier,2
-DELIVERED,Order has arrived at the customer address,3
-CANCELLED,Order was cancelled before shipment,1
+code,name,description,criticality
+INCART, In Cart, Order is in cart and not placed,4
+PLACED,Order Placed,Order has been placed and is awaiting processing,2
+CONFIRMED, Order Confirmed, Order has been confirmed by the seller, 3
+SHIPPED,Shipped,Order has been packed and sent to the shipping carrier,5
+DELIVERED,Delivered,Order has arrived at the customer address,3
+CANCELLED,Cancelled,Order was cancelled before shipment,1
