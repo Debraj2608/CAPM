@@ -5,7 +5,13 @@ service OrderService {
     @odata.draft.enabled : true
     entity Orders as projection on db.Orders
     actions {
-        @Common.IsActionCritical : true
+        @cds.odata.BindingParameter.name: 'Orders'
+        @Common.IsActionCritical
+        @Common.SideEffects:
+        {
+            TargetProperties: ['status_code'],
+            TargetEntities : ['Orders'],
+        }
         action placeOrder ();
     };
     @readonly

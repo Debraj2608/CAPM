@@ -14,13 +14,13 @@ annotate service.Orders with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : lastName,
-                Label : 'Your Last Name',
+                Value : contactNo,
+                Label : '{i18n>YourPhoneNumber}',
             },
             {
                 $Type : 'UI.DataField',
-                Value : contactNo,
-                Label : '{i18n>YourPhoneNumber}',
+                Value : lastName,
+                Label : 'Your Last Name',
             },
             {
                 $Type : 'UI.DataField',
@@ -41,6 +41,7 @@ annotate service.Orders with @(
                 $Type : 'UI.DataField',
                 Label : '{i18n>TotalPrice}',
                 Value : totalPrice,
+                ![@UI.Hidden]: { $edmJson: {$Ne: { $Path: 'IsActiveEntity' },false} }
             },
             {
                 $Type : 'UI.DataField',
@@ -48,6 +49,7 @@ annotate service.Orders with @(
                 Value : status_code,
                 Criticality : status.criticality,
                 CriticalityRepresentation : #WithoutIcon,
+                ![@UI.Hidden]: { $edmJson: {$Ne: { $Path: 'IsActiveEntity' },false} }
             },
         ],
     },
@@ -98,9 +100,17 @@ annotate service.Orders with @(
             Action : 'OrderService.placeOrder',
             Label : 'Place Order',
             Criticality : #Positive,
-            ![@UI.Hidden]: { $edmJson: {$Ne: { $Path: 'IsActiveEntity' },false} }
-        },
+            ![@UI.Hidden]: { $edmJson: {$Not: {$Or: [
+                {$Eq: [{ $Path: 'status_code'}, 'INCART']}
+            ]
+            }}}}
     ],
+    UI.UpdateHidden : { $edmJson: {$Not: {$Or: [
+        {$Eq: [{ $Path: 'status_code'}, 'INCART']},
+    ]} }},
+    UI.DeleteHidden : { $edmJson: {$Not: {$Or: [
+        {$Eq: [{Path: 'status_code'}, 'INCART']},
+    ]} }}
 );
 
 annotate service.Orders with {
@@ -169,6 +179,11 @@ annotate service.OrderItems with @(
             Value : book.genre.name,
             Label : '{i18n>Genre}',
         },
+        {
+            $Type : 'UI.DataField',
+            Value : netprice,
+            Label : '{i18n>NetPrice}',
+        },
     ]
 );
 
@@ -227,3 +242,6 @@ annotate service.Genres with {
         Common.Label: 'Genre'
 )};
 
+annotate service.OrderItems with {
+    netprice @Common.FieldControl : #ReadOnly
+};
