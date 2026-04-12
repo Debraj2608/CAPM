@@ -11,7 +11,7 @@ entity Books: cuid, managed {
   stock : Integer;
   genre : Association to one Genres;
   shortDescription : String;
-  rating : Integer @assert.range:[1,5];
+  rating : Decimal @assert.range:[1,5];
   orderItems : Association to many OrderItems on orderItems.book = $self;
 }
 

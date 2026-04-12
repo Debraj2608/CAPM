@@ -132,10 +132,14 @@
                     },
                     "DataField::stock": {
                       "width": "100%"
+                    },
+                    "DataFieldForAnnotation::DataPoint::rating1": {
+                      "width": "100%"
                     }
                   }
                 }
               },
+              "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
               "initialLoad": "Enabled"
             }
           }

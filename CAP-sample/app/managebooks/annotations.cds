@@ -20,6 +20,7 @@ annotate service.Books with @(
                 $Type : 'UI.DataField',
                 Value : rating,
                 Label : '{i18n>Rating}',
+                ![@UI.Hidden]: { $edmJson: { $Path: 'IsActiveEntity' } }
             },
         ],
     },
@@ -64,6 +65,11 @@ annotate service.Books with @(
             Label : '{i18n>Stock}',
             Value : stock,
         },
+        {
+            $Type : 'UI.DataFieldForAnnotation',
+            Target : '@UI.DataPoint#rating1',
+            Label : 'Rating',
+        },
     ],
     UI.HeaderInfo : {
         Title : {
@@ -103,6 +109,42 @@ annotate service.Books with @(
             },
         ],
     },
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'rating',
+            Target : '@UI.DataPoint#rating',
+            ![@UI.Hidden]: { $edmJson: {$Ne: { $Path: 'IsActiveEntity'},false}}
+        },
+    ],
+    UI.DataPoint #rating : {
+        $Type : 'UI.DataPointType',
+        Value : rating,
+        Title : '{i18n>Rating}',
+        Visualization : #Rating,
+    },
+    UI.DataPoint #rating1 : {
+        Value : rating,
+        Visualization : #Rating,
+        TargetValue : 5,
+    },
+    UI.SelectionPresentationVariant #tableView : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem',
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+            ],
+        },
+        Text : 'Books',
+    },
+    UI.LineItem #tableView : [
+    ],
 );
 
 annotate service.Books with {
@@ -134,4 +176,3 @@ annotate service.Genres with {
 annotate service.Books with {
     shortDescription @UI.MultiLineText : true
 };
-
