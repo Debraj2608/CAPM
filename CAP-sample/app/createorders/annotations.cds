@@ -245,3 +245,7 @@ annotate service.Genres with {
 annotate service.OrderItems with {
     netprice @Common.FieldControl : #ReadOnly
 };
+
+annotate service.OrderItems with {
+    book @mandatory : true
+};

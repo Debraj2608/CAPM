@@ -5,13 +5,13 @@ using {cuid, managed, sap.common.CodeList} from '@sap/cds/common';
 using {Country} from '@sap/cds-common-content';
 
 entity Books: cuid, managed {
-  title : String;
+  title : String @mandatory;
   author : String;
-  price : Decimal(10,2);
-  stock : Integer;
-  genre : Association to one Genres;
-  shortDescription : String;
-  rating : Decimal @assert.range:[1,5];
+  price : Decimal(10,2) @mandatory;
+  stock : Integer @mandatory;
+  genre : Association to one Genres @mandatory;
+  shortDescription : String @mandatory;
+  rating : Decimal @assert.range:[1,5] @mandatory;
   orderItems : Association to many OrderItems on orderItems.book = $self;
 }
 
@@ -20,18 +20,18 @@ entity Orders: cuid, managed {
   orderItems : Composition of many OrderItems on orderItems.order = $self;
   totalPrice : Decimal(10,2);
   status : Association to one OrderStatus;
-  address : String;
-  Country : Country;
-  contactNo : String(10) @assert.format: '^[0-9]{10}$';
-  firstName : String;
-  lastName : String;
-  email : String @assert.format: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' @Communication.IsEmailAddress;
+  address : String @mandatory;
+  Country : Country @mandatory;
+  contactNo : String(10) @assert.format: '^[0-9]{10}$' @mandatory;
+  firstName : String @mandatory;
+  lastName : String @mandatory;
+  email : String @assert.format: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' @Communication.IsEmailAddress @mandatory;
 }
 
 entity OrderItems: cuid, managed {
   order : Association to one Orders;
-  book : Association to one Books;
-  quantity : Integer;
+  book : Association to one Books;@mandatory
+  quantity : Integer;@mandatory
   netprice : Decimal(10,2);
 }
 

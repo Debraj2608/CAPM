@@ -4,6 +4,6 @@ ID,orderNumber,totalPrice,status_code,address,Country_code,contactNo,firstName,l
 550e8400-e29b-41d4-a716-446655440102,ORD-1003,33.49,DELIVERED,"789 Pine Rd, Chicago, IL 60601",US,3125554321,Michael,Brown,michael.brown@example.com,2026-04-08T15:35:00Z,user,2026-04-08T15:35:00Z,user
 550e8400-e29b-41d4-a716-446655440103,ORD-1004,48.98,PLACED,"321 Elm St, Houston, TX 77001",US,7135552468,Emily,Davis,emily.davis@example.com,2026-04-09T08:20:00Z,admin,2026-04-09T08:20:00Z,admin
 550e8400-e29b-41d4-a716-446655440104,ORD-1005,37.48,SHIPPED,"654 Maple Dr, Phoenix, AZ 85001",US,6025557890,Robert,Miller,robert.miller@example.com,2026-04-09T09:45:00Z,bob,2026-04-09T09:45:00Z,candice
-550e8400-e29b-41d4-a716-446655440105,ORD-1006,60.49,DELIVERED,"987 Cedar Ln, Philadelphia, PA 19101",US,2155563210,Jessica,Wilson,jessica.wilson@example.com,2026-04-09T11:00:00Z,user,2026-04-09T11:00:00Z,user
+550e8400-e29b-41d4-a716-446655440105,ORD-1006,60.49,INCART,"987 Cedar Ln, Philadelphia, PA 19101",US,2155563210,Jessica,Wilson,jessica.wilson@example.com,2026-04-09T11:00:00Z,user,2026-04-09T11:00:00Z,user
 550e8400-e29b-41d4-a716-446655440106,ORD-1007,22.49,CANCELLED,"147 Birch Way, San Antonio, TX 78201",US,2105552109,David,Moore,david.moore@example.com,2026-04-09T13:15:00Z,candice,2026-04-09T13:15:00Z,candice
 550e8400-e29b-41d4-a716-446655440107,ORD-1008,47.23,PLACED,"258 Spruce Ct, San Diego, CA 92101",US,6195558765,Lisa,Taylor,lisa.taylor@example.com,2026-04-09T14:30:00Z,admin,2026-04-09T14:30:00Z,admin
