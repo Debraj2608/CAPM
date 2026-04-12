@@ -18,11 +18,13 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-managebooks": "cds watch --open bookshop.managebooks/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-managebooks": "cds watch --open bookshop.managebooksandorders/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-managebooksandorders": "cds watch --open bookshop.managebooksandorders/index.html?sap-ui-xx-viewCache=false --livereload false",
     "undeploy": "cf undeploy CAP-bookshop --delete-services --delete-service-keys --delete-service-brokers",
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-    "watch-manageorders": "cds watch --open manageorders/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-manageorders": "cds watch --open bookshop.createorders/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-createorders": "cds watch --open bookshop.createorders/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "cds": {
@@ -74,7 +76,7 @@
     "app/*"
   ],
   "sapux": [
-    "app/managebooks",
-    "app/manageorders"
+    "app/managebooksandorders",
+    "app/createorders"
   ]
 }

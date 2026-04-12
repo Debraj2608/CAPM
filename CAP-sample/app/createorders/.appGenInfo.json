@@ -1,0 +1,33 @@
+{
+  "generationParameters": {
+    "generationDate": "Thu Apr 09 2026 00:28:49 GMT+0530 (India Standard Time)",
+    "generatorPlatform": "Visual Studio Code",
+    "serviceType": "Local CAP",
+    "metadataFilename": "",
+    "serviceUrl": "http://localhost:4004/service/OrderService/",
+    "appName": "createorders",
+    "appTitle": "Create Orders",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "bookshop",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.146.0",
+    "enableCodeAssist": false,
+    "enableEslint": false,
+    "enableTypeScript": false,
+    "showMockDataInfo": false,
+    "generatorVersion": "1.18.7",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "Orders"
+      },
+      {
+        "type": "Navigation Entity",
+        "value": "orderItems"
+      }
+    ],
+    "launchText": "To launch the generated app, start your CAP project:  and navigate to the following location in your browser:\n\nhttp://localhost:4004/createorders/index.html"
+  }
+}

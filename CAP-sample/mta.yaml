@@ -37,16 +37,16 @@ modules:
       build-result: resources
       requires:
         - artifacts:
-            - bookshopmanagebooks.zip
-          name: bookshopmanagebooks
+            - bookshopmanagebooksandorders.zip
+          name: bookshopmanagebooksandorders
           target-path: resources/
         - artifacts:
-            - manageorders.zip
-          name: manageorders
+            - bookshopcreateorders.zip
+          name: bookshopcreateorders
           target-path: resources/
-  - name: bookshopmanagebooks
+  - name: bookshopmanagebooksandorders
     type: html5
-    path: app/managebooks
+    path: app/managebooksandorders
     build-parameters:
       build-result: dist
       builder: custom
@@ -55,9 +55,9 @@ modules:
         - npm run build:cf
       supported-platforms:
         []
-  - name: manageorders
+  - name: bookshopcreateorders
     type: html5
-    path: app/manageorders
+    path: app/createorders
     build-parameters:
       build-result: dist
       builder: custom
