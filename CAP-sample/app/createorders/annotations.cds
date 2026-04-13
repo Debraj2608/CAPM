@@ -206,6 +206,10 @@ annotate service.OrderItems with {
                 },
                 {
                     $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'stock',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
                     ValueListProperty : 'price',
                 },
                 {
@@ -233,7 +237,9 @@ annotate service.Books with {
 
 annotate service.Books with {
     price @(
-        Common.Label: 'Price')
+        Common.Label: 'Price');
+    stock @(
+        Common.Label: 'Available Units');
 };
 
 annotate service.Genres with {
@@ -248,4 +254,11 @@ annotate service.OrderItems with {
 
 annotate service.OrderItems with {
     book @mandatory : true
+};
+
+annotate service.OrderItems with {
+    quantity @(
+        Common.Label: 'Quantity',
+        Common.QuickInfo: 'Cannot exceed book stock'
+    )
 };

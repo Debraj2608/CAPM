@@ -15,7 +15,9 @@ service OrderService {
         action placeOrder ();
     };
     @readonly
-    entity Books as projection on db.Books;
+    entity Books as projection on db.Books{
+        *,
+    } where stock > 0;
 
     entity OrderItems as projection on db.OrderItems;
 }

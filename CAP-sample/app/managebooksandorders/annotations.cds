@@ -176,3 +176,7 @@ annotate service.Genres with {
 annotate service.Books with {
     shortDescription @UI.MultiLineText : true
 };
+
+annotate service.Books with {
+    author @mandatory : true
+}
