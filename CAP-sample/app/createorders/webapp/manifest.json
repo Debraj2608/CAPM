@@ -162,6 +162,19 @@
                       "width": "100%"
                     }
                   }
+                },
+                "orderlog/@com.sap.vocabularies.UI.v1.LineItem#OrderTracking": {
+                  "columns": {
+                    "DataField::status_code": {
+                      "width": "100%"
+                    },
+                    "DataField::trackingInfo": {
+                      "width": "100%"
+                    },
+                    "DataField::createdAt": {
+                      "width": "100%"
+                    }
+                  }
                 }
               }
             }

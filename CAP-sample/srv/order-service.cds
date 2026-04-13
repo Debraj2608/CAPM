@@ -14,10 +14,14 @@ service OrderService {
         }
         action placeOrder ();
     };
+
     @readonly
     entity Books as projection on db.Books{
         *,
     } where stock > 0;
+
+    @readonly
+    entity OrderLogs as projection on db.OrderLogs;
 
     entity OrderItems as projection on db.OrderItems;
 }

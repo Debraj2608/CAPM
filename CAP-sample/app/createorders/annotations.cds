@@ -66,6 +66,13 @@ annotate service.Orders with @(
             ID : 'OrderItems',
             Target : 'orderItems/@UI.LineItem#OrderItems',
         },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Order Tracking',
+            ID : 'OrderTracking',
+            Target : 'orderlog/@UI.LineItem#OrderTracking',
+            ![@UI.Hidden]: { $edmJson: {$Ne: { $Path: 'IsActiveEntity' },false} }
+        },
     ],
     UI.LineItem : [
         {
@@ -262,3 +269,25 @@ annotate service.OrderItems with {
         Common.QuickInfo: 'Cannot exceed book stock'
     )
 };
+annotate service.OrderLogs with @(
+    UI.LineItem #OrderTracking : [
+        {
+            $Type : 'UI.DataField',
+            Value : status_code,
+            Label : '{i18n>Status}',
+            Criticality : status.criticality,
+            CriticalityRepresentation : #WithoutIcon,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : trackingInfo,
+            Label : '{i18n>TrackingInformation}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : createdAt,
+            Label : '{i18n>UpdatedOn}',
+        },
+    ]
+);
+

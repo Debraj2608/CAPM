@@ -26,6 +26,7 @@ entity Orders: cuid, managed {
   firstName : String @mandatory;
   lastName : String @mandatory;
   email : String @assert.format: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' @Communication.IsEmailAddress @mandatory;
+  orderlog : Composition of many OrderLogs on orderlog.order = $self;
 }
 
 entity OrderItems: cuid, managed {
@@ -33,6 +34,12 @@ entity OrderItems: cuid, managed {
   book : Association to one Books;@mandatory
   quantity : Integer;@mandatory
   netprice : Decimal(10,2);
+}
+
+entity OrderLogs: cuid, managed {
+  order: Association to one Orders;
+  status: Association to one OrderStatus;
+  trackingInfo: String;
 }
 
 entity Genres: CodeList {
