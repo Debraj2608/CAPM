@@ -289,6 +289,14 @@ annotate service.Orders with @(
         TypeName : '',
         TypeNamePlural : '',
     },
+    UI.Identification : [
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'CatalogService.confirmOrder',
+            Label : '{i18n>ConfirmOrder}',
+            Criticality : #Positive,
+        },
+    ],
 );
 
 annotate service.Orders with {

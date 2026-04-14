@@ -14,7 +14,16 @@ service CatalogService {
     entity Books as projection on db.Books;
 
     @readonly
-    entity Orders as projection on db.Orders;
+    entity Orders as projection on db.Orders
+    actions{
+        @Common.IsActionCritical
+        @Common.SideEffects:
+        {
+            TargetProperties: ['status_code', 'orderlog'],
+            TargetEntities: ['Orders']
+        }
+        action confirmOrder();
+    };
 }
 
 annotate CatalogService with @requires : ['Admin'];

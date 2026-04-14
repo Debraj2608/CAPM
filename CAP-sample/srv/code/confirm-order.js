@@ -1,0 +1,18 @@
+const { UPDATE } = require("@sap/cds/lib/ql/cds-ql");
+const INSERT = require("@sap/cds/lib/ql/INSERT");
+
+const confirmOrder = async (request) =>{
+    const orderID = request.params[0].ID;
+    console.log(orderID);
+
+    await UPDATE('my.bookshop.Orders').set({status_code: 'CONFIRMED'}).where({ID: orderID});
+
+    await INSERT.into('my.bookshop.OrderLogs').entries({
+        order_ID: orderID,
+        trackingInfo: "Order is confirmed",
+        status_code: 'CONFIRMED'
+    })
+
+}
+
+module.exports = confirmOrder;
