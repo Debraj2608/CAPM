@@ -295,6 +295,12 @@ annotate service.Orders with @(
             Action : 'CatalogService.confirmOrder',
             Label : '{i18n>ConfirmOrder}',
             Criticality : #Positive,
+            ![@UI.Hidden]: { $edmJson: {
+                $Ne: [
+                    { $Path: 'status_code'},
+                    'PLACED'
+                    ]
+            }}
         },
     ],
 );
