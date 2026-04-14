@@ -97,6 +97,11 @@
             "BooksList",
             "BooksObjectPage"
           ]
+        },
+        {
+          "name": "OrdersObjectPage",
+          "pattern": "Orders({OrdersKey}):?query:",
+          "target": "OrdersObjectPage"
         }
       ],
       "targets": {
@@ -112,6 +117,11 @@
                 "Books": {
                   "detail": {
                     "route": "BooksObjectPage"
+                  }
+                },
+                "Orders": {
+                  "detail": {
+                    "route": "OrdersObjectPage"
                   }
                 }
               },
@@ -137,10 +147,36 @@
                       "width": "100%"
                     }
                   }
+                },
+                "/Orders/@com.sap.vocabularies.UI.v1.LineItem#tableView": {
+                  "columns": {
+                    "DataField::orderNumber": {
+                      "width": "100%"
+                    },
+                    "DataField::status_code": {
+                      "width": "100%"
+                    },
+                    "DataField::totalPrice": {
+                      "width": "100%"
+                    }
+                  }
                 }
               },
               "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
-              "initialLoad": "Enabled"
+              "initialLoad": "Enabled",
+              "views": {
+                "paths": [
+                  {
+                    "key": "tableView",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView"
+                  },
+                  {
+                    "key": "tableView1",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
+                    "entitySet": "Orders"
+                  }
+                ]
+              }
             }
           }
         },
@@ -152,6 +188,51 @@
             "settings": {
               "editableHeaderContent": false,
               "contextPath": "/Books"
+            }
+          }
+        },
+        "OrdersObjectPage": {
+          "type": "Component",
+          "id": "OrdersObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "navigation": {},
+              "contextPath": "/Orders",
+              "controlConfiguration": {
+                "orderItems/@com.sap.vocabularies.UI.v1.LineItem#i18nOrderedItems": {
+                  "columns": {
+                    "DataField::book::title": {
+                      "width": "100%"
+                    },
+                    "DataField::quantity": {
+                      "width": "100%"
+                    },
+                    "DataField::book::author": {
+                      "width": "100%"
+                    },
+                    "DataField::book::genre::name": {
+                      "width": "100%"
+                    },
+                    "DataField::netprice": {
+                      "width": "100%"
+                    }
+                  }
+                },
+                "orderlog/@com.sap.vocabularies.UI.v1.LineItem#OrderLog": {
+                  "columns": {
+                    "DataField::status_code": {
+                      "width": "100%"
+                    },
+                    "DataField::trackingInfo": {
+                      "width": "100%"
+                    },
+                    "DataField::modifiedAt": {
+                      "width": "100%"
+                    }
+                  }
+                }
+              }
             }
           }
         }

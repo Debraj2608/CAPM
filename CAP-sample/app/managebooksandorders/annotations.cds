@@ -141,7 +141,7 @@ annotate service.Books with @(
             SelectOptions : [
             ],
         },
-        Text : 'Books',
+        Text : '{i18n>BooksInventory}',
     },
     UI.LineItem #tableView : [
     ],
@@ -180,3 +180,187 @@ annotate service.Books with {
 annotate service.Books with {
     author @mandatory : true
 }
+annotate service.Orders with @(
+    UI.LineItem #tableView : [
+        {
+            $Type : 'UI.DataField',
+            Value : orderNumber,
+            Label : '{i18n>OrderNumber}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : totalPrice,
+            Label : '{i18n>TotalOrderPrice}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : status_code,
+            Label : '{i18n>Status}',
+            Criticality : status.criticality,
+            CriticalityRepresentation : #WithoutIcon,
+        },
+    ],
+    UI.SelectionPresentationVariant #tableView : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView',
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+            ],
+        },
+        Text : '{i18n>ManageOrders}',
+    },
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : '{i18n>DeliveryInformation}',
+            ID : 'i18nDeliveryInformation',
+            Target : '@UI.FieldGroup#i18nDeliveryInformation',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : '{i18n>OrderedItems}',
+            ID : 'i18nOrderedItems',
+            Target : 'orderItems/@UI.LineItem#i18nOrderedItems',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Order Log',
+            ID : 'OrderLog',
+            Target : 'orderlog/@UI.LineItem#OrderLog',
+        },
+    ],
+    UI.FieldGroup #i18nDeliveryInformation : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : firstName,
+                Label : '{i18n>FirstName}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : contactNo,
+                Label : '{i18n>PhoneNumber}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : lastName,
+                Label : '{i18n>LastName}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : email,
+                Label : '{i18n>EmailId}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : address,
+                Label : '{i18n>DeliveryAddress}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Country_code,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : totalPrice,
+                Label : '{i18n>TotalOrderPrice}',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : status_code,
+                Label : '{i18n>OrderStatus}',
+                Criticality : status.criticality,
+                CriticalityRepresentation : #WithoutIcon,
+            },
+        ],
+    },
+    UI.HeaderInfo : {
+        Title : {
+            $Type : 'UI.DataField',
+            Value : orderNumber,
+        },
+        TypeName : '',
+        TypeNamePlural : '',
+    },
+);
+
+annotate service.Orders with {
+    status @(
+        Common.Text : status.name,
+        Common.Text.@UI.TextArrangement : #TextOnly,
+    )
+};
+
+annotate service.Orders with {
+    Country @(
+        Common.Text : Country.name,
+        Common.Text.@UI.TextArrangement : #TextOnly,
+    )
+};
+
+annotate service.OrderItems with @(
+    UI.LineItem #i18nOrderedItems : [
+        {
+            $Type : 'UI.DataField',
+            Value : book.title,
+            Label : '{i18n>Book}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : quantity,
+            Label : '{i18n>Quantity}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : book.author,
+            Label : '{i18n>Author}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : book.genre.name,
+            Label : '{i18n>Genre}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : netprice,
+            Label : '{i18n>NetPrice}',
+        },
+    ]
+);
+
+annotate service.OrderLogs with @(
+    UI.LineItem #OrderLog : [
+        {
+            $Type : 'UI.DataField',
+            Value : status_code,
+            Label : '{i18n>Status}',
+            Criticality : status.criticality,
+            CriticalityRepresentation : #WithoutIcon,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : trackingInfo,
+            Label : '{i18n>TrackingInformation}',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : modifiedAt,
+            Label : '{i18n>UpdatedOn}',
+        },
+    ]
+);
+
+annotate service.OrderLogs with {
+    status @(
+        Common.Text : status.name,
+        Common.Text.@UI.TextArrangement : #TextOnly,
+    )
+};
+

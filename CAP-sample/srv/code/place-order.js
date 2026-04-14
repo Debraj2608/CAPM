@@ -21,6 +21,11 @@ const placeOrder = async (request) => {
     }
 
     await UPDATE('my.bookshop.Orders').set({ status_code: 'PLACED' }).where({ ID: requestID });
+    await INSERT.into('my.bookshop.OrderLogs').entries({
+        order_ID: requestID,
+        trackingInfo: "Order Placed",
+        status_code: 'PLACED'
+    })
     return
     
 }

@@ -12,6 +12,9 @@ service CatalogService {
 
     @odata.draft.enabled : true
     entity Books as projection on db.Books;
+
+    @readonly
+    entity Orders as projection on db.Orders;
 }
 
 annotate CatalogService with @requires : ['Admin'];

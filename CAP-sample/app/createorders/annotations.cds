@@ -291,3 +291,10 @@ annotate service.OrderLogs with @(
     ]
 );
 
+annotate service.OrderLogs with {
+    status @(
+        Common.Text : status.name,
+        Common.Text.@UI.TextArrangement : #TextOnly,
+    )
+};
+

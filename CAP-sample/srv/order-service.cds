@@ -9,7 +9,7 @@ service OrderService {
         @Common.IsActionCritical
         @Common.SideEffects:
         {
-            TargetProperties: ['status_code'],
+            TargetProperties: ['status_code', 'orderlog'],
             TargetEntities : ['Orders'],
         }
         action placeOrder ();
