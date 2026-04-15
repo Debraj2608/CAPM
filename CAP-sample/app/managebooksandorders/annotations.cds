@@ -302,6 +302,30 @@ annotate service.Orders with @(
                     ]
             }}
         },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'CatalogService.shipOrder',
+            Label : '{i18n>ShipOrder}',
+            Criticality : #Positive,
+            ![@UI.Hidden]: { $edmJson: {
+                $Ne: [
+                    { $Path: 'status_code'},
+                    'CONFIRMED'
+                    ]
+            }}
+        },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'CatalogService.deliverOrder',
+            Label : '{i18n>DeliverOrder}',
+            Criticality : #Positive,
+            ![@UI.Hidden]: {$edmJson: {
+                $Ne: [
+                    {$Path: 'status_code'},
+                    'SHIPPED'
+                ]
+            }}
+        },
     ],
 );
 

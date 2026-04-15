@@ -1,6 +1,3 @@
-const { UPDATE } = require("@sap/cds/lib/ql/cds-ql");
-const INSERT = require("@sap/cds/lib/ql/INSERT");
-
 const confirmOrder = async (request) =>{
     const orderID = request.params[0].ID;
 

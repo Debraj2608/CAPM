@@ -14,7 +14,9 @@ service CatalogService {
     entity Books as projection on db.Books;
 
     @readonly
-    entity Orders as projection on db.Orders
+    entity Orders as projection on db.Orders{
+        *,
+    } where status != 'INCART'
     actions{
         @Common.IsActionCritical
         @Common.SideEffects:
@@ -23,6 +25,24 @@ service CatalogService {
             TargetEntities: ['Orders']
         }
         action confirmOrder();
+
+        @Common.IsActionCritical
+        @Common.SideEffects:
+        {
+            TargetProperties: ['status_code', 'orderlog'],
+            TargetEntities: ['Orders']
+        }
+        action shipOrder(
+            trackingInfo: String @title: 'Shipping Info' @UI.MultiLineText: true
+        );
+        
+        @Common.IsActionCritical
+        @Common.SideEffects:
+        {
+            TargetProperties: ['status_code', 'orderlog'],
+            TargetEntities: ['Orders']
+        }
+        action deliverOrder();
     };
 }
 
