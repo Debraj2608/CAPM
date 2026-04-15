@@ -3,7 +3,7 @@ const cancelOrder = async (request) => {
 
     const orderItems = await SELECT.from('my.bookshop.OrderItems').where({order_ID: orderID});
     const books_ID = orderItems.map(book => book.book_ID);
-    const books = await SELECT.from('my.bookshop.Books').where({ID: {in: books_ID}})
+    const books = await SELECT.from('my.bookshop.Books').where({ID: {in: books_ID}}).forUpdate();
 
     for(item of orderItems){
         const book = books.find(b => b.ID === item.book_ID);
