@@ -1,6 +1,7 @@
 const cds = require('@sap/cds');
 const place_order = require('./code/place-order');
 const create_update_handler = require('./code/create-update-handler');
+const cancel_order = require('./code/cancel-order');
 
 class OrderService extends cds.ApplicationService {
     async init() {
@@ -11,6 +12,10 @@ class OrderService extends cds.ApplicationService {
         this.after(['CREATE', 'UPDATE'], 'Orders', async (result, request) => {
             await create_update_handler(result, request);
         });
+
+        this.on('cancelOrder', 'Orders', async (request) => {
+            await cancel_order(request);
+        })
 
         return super.init();
     }

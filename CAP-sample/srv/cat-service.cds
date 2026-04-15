@@ -16,7 +16,7 @@ service CatalogService {
     @readonly
     entity Orders as projection on db.Orders{
         *,
-    } where status != 'INCART'
+    } where status.code not in ('INCART', 'CANCELLED')
     actions{
         @Common.IsActionCritical
         @Common.SideEffects:
@@ -44,6 +44,9 @@ service CatalogService {
         }
         action deliverOrder();
     };
+
+    @readOnly
+    entity OrderStatus as projection on db.OrderStatus
 }
 
 annotate CatalogService with @requires : ['Admin'];

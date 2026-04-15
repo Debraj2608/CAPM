@@ -13,6 +13,14 @@ service OrderService {
             TargetEntities : ['Orders'],
         }
         action placeOrder ();
+
+        @Common.IsActionCritical
+        @Common.SideEffects:
+        {
+            TargetProperties: ['status_code', 'orderlog'],
+            TargetEntities : ['Orders'],
+        }
+        action cancelOrder();
     };
 
     @readonly

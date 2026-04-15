@@ -110,7 +110,19 @@ annotate service.Orders with @(
             ![@UI.Hidden]: { $edmJson: {$Not: {$Or: [
                 {$Eq: [{ $Path: 'status_code'}, 'INCART']}
             ]
-            }}}}
+            }}}
+        },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'OrderService.cancelOrder',
+            Label : '{i18n>CancelOrder}',
+            Criticality: #Negative,
+            ![@UI.Hidden]: { $edmJson: {$Not: {$Or: [
+                {$Eq: [{ $Path: 'status_code'}, 'PLACED']}
+            ]
+            }}}
+        },
+        
     ],
     UI.UpdateHidden : { $edmJson: {$Not: {$Or: [
         {$Eq: [{ $Path: 'status_code'}, 'INCART']},

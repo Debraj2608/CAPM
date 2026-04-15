@@ -207,6 +207,9 @@ annotate service.Orders with @(
             Visualizations : [
                 '@UI.LineItem#tableView',
             ],
+            GroupBy : [
+                status.name,
+            ],
         },
         SelectionVariant : {
             $Type : 'UI.SelectionVariantType',
@@ -331,7 +334,16 @@ annotate service.Orders with @(
 
 annotate service.Orders with {
     status @(
+        Common.Label : '',
         Common.Text : status.name,
+        Common.Text.@UI.TextArrangement : #TextOnly,
+    )
+};
+
+annotate service.OrderStatus with {
+    name @(
+        Common.Label : 'Status',
+        Common.Text : status.name, 
         Common.Text.@UI.TextArrangement : #TextOnly,
     )
 };
@@ -398,6 +410,7 @@ annotate service.OrderLogs with @(
 annotate service.OrderLogs with {
     status @(
         Common.Text : status.name,
+        Common.Label: 'Order Status',
         Common.Text.@UI.TextArrangement : #TextOnly,
     )
 };
