@@ -176,6 +176,18 @@
                     }
                   }
                 }
+              },
+              "content": {
+                "header": {
+                  "actions": {
+                    "downloadPDF": {
+                      "press": "bookshop.createorders.ext.controller.DownloadPDF.downloadPFDCustomAction",
+                      "visible": "{= %{status_code} === 'DELIVERED'}",
+                      "enabled": true,
+                      "text": "Download PDF"
+                    }
+                  }
+                }
               }
             }
           }

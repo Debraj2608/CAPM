@@ -21,6 +21,9 @@ service OrderService {
             TargetEntities : ['Orders'],
         }
         action cancelOrder();
+
+        function downloadPDF()
+            returns String;
     };
 
     @readonly
