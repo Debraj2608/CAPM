@@ -2,7 +2,7 @@ const placeOrder = async (request) => {
     const requestID = request.params[0].ID; // Get the order ID from the request parameters
     const orderItems = await SELECT.from('my.bookshop.OrderItems').where({ order_ID: requestID }); // Fetch the order items associated with the order ID
     if (orderItems.length === 0) {
-        return request.error(500, 'You cannot place an order without adding the required books.');
+        return request.error(500, 'You cannot place an order without adding atleast one book.');
     }
     const bookIDs = orderItems.map(item => item.book_ID); // Extract the book IDs from the order items
     const bookDetails = await SELECT.from('my.bookshop.Books').where({ID:{ in: bookIDs }}).forUpdate(); // Fetch the book details for the associated book IDs with a lock for update to prevent concurrent modifications (Prevent race conditions)

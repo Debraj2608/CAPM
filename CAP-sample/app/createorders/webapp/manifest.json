@@ -143,6 +143,7 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
+              "enhanceI18n": "i18n/custom_i18n.properties",
               "editableHeaderContent": false,
               "contextPath": "/Orders",
               "navigation": {},
