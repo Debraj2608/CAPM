@@ -107,8 +107,8 @@ annotate service.Orders with @(
             Action : 'OrderService.placeOrder',
             Label : 'Place Order',
             Criticality : #Positive,
-            ![@UI.Hidden]: { $edmJson: {$Not: {$Or: [
-                {$Eq: [{ $Path: 'status_code'}, 'INCART']}
+            ![@UI.Hidden]: { $edmJson: {$Not: {$And: [
+                {$Eq: [{ $Path: 'status_code'}, 'INCART']},{$Eq: { $Path: 'IsActiveEntity' },true}
             ]
             }}}
         },
