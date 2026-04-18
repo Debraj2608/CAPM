@@ -4,7 +4,7 @@ const cancelOrder = async (request) => {
     const orderID = request.params[0].ID;
     const orderStatus = await SELECT.one('status_code').from('my.bookshop.Orders').where({ID: orderID});
     if(orderStatus.status_code!== 'PLACED'){
-        return request.error(500, 'You cannot cancel an order after the order is not in placed status.');
+        return request.error(500, 'You cannot cancel an order if the order is not in placed status.');
     }
     const orderItems = await SELECT.from('my.bookshop.OrderItems').where({order_ID: orderID});
     const books_ID = orderItems.map(book => book.book_ID);
