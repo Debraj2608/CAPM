@@ -101,6 +101,7 @@
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
+              "enhanceI18n": "i18n/custom_i18n.properties",
               "contextPath": "/Orders",
               "variantManagement": "Page",
               "navigation": {

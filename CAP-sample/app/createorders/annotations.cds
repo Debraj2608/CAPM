@@ -129,7 +129,10 @@ annotate service.Orders with @(
     ]} }},
     UI.DeleteHidden : { $edmJson: {$Not: {$Or: [
         {$Eq: [{Path: 'status_code'}, 'INCART']},
-    ]} }}
+    ]} }},
+    UI.SelectionFields : [
+        status.name,
+    ],
 );
 
 annotate service.Orders with {
@@ -307,6 +310,25 @@ annotate service.OrderLogs with {
     status @(
         Common.Text : status.name,
         Common.Text.@UI.TextArrangement : #TextOnly,
+    )
+};
+
+annotate service.OrderStatus with {
+    name @(
+        Common.Label : '{i18n>Status}',
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'OrderStatus',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : name,
+                    ValueListProperty : 'name',
+                },
+            ],
+            Label : 'Status',
+        },
+        Common.ValueListWithFixedValues : true,
     )
 };
 
