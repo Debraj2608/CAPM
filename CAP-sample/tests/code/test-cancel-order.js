@@ -78,7 +78,7 @@ async function cancelOrderFails(GET, POST, PATCH, DELETE, expect) {
             auth: {username: "admin", password: "admin"},
         }
       )
-    ).to.be.rejectedWith(/You cannot cancel an order after the order is not in placed status./i)
+    ).to.be.rejectedWith(/You cannot cancel an order if the order is not in placed status./i)
 }
 
 module.exports = {cancelOrderSucceds, cancelOrderFails}
