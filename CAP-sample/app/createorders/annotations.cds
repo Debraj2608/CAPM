@@ -259,7 +259,9 @@ annotate service.Books with {
 
 annotate service.Books with {
     price @(
-        Common.Label: 'Price');
+        Common.Label: 'Price',
+        Measures.ISOCurrency : 'EURO'
+        );
     stock @(
         Common.Label: 'Available Units');
 };
@@ -271,7 +273,10 @@ annotate service.Genres with {
 )};
 
 annotate service.OrderItems with {
-    netprice @Common.FieldControl : #ReadOnly
+    netprice @(
+        Common.FieldControl : #ReadOnly,
+        Measures.ISOCurrency : 'EURO',
+    )
 };
 
 annotate service.OrderItems with {
@@ -330,5 +335,9 @@ annotate service.OrderStatus with {
         },
         Common.ValueListWithFixedValues : true,
     )
+};
+
+annotate service.Orders with {
+    totalPrice @Measures.ISOCurrency : 'EURO'
 };
 

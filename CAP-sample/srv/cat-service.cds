@@ -11,7 +11,10 @@ service CatalogService {
     ];
 
     @odata.draft.enabled : true
-    entity Books as projection on db.Books;
+    entity Books as projection on db.Books {
+        *,
+        'EURO' as currency : String
+    };
 
     @readonly
     entity Orders as projection on db.Orders{

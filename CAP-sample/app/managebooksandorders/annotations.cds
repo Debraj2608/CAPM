@@ -415,3 +415,15 @@ annotate service.OrderLogs with {
     )
 };
 
+annotate service.Books with {
+    price @Measures.ISOCurrency : currency
+};
+
+annotate service.Orders with {
+    totalPrice @Measures.ISOCurrency : 'EURO'
+};
+
+annotate service.OrderItems with {
+    netprice @Measures.ISOCurrency : book.currency
+};
+
