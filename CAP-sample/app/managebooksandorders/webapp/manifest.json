@@ -111,6 +111,7 @@
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
+              "enhanceI18n": "i18n/custom_i18n.properties",
               "contextPath": "/Books",
               "variantManagement": "Page",
               "navigation": {
@@ -186,6 +187,7 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
+              "enhanceI18n": "i18n/custom_i18n.properties",
               "editableHeaderContent": false,
               "contextPath": "/Books"
             }
@@ -197,6 +199,7 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
+              "enhanceI18n": "i18n/custom_i18n.properties",
               "navigation": {},
               "contextPath": "/Orders",
               "controlConfiguration": {
