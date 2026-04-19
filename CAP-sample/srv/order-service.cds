@@ -11,7 +11,7 @@ service OrderService {
             where : 'createdBy = $user'
         },
         {
-            grant : [ 'READ' ],
+            grant : [ '*' ],
             to: [ 'Admin' ]
         }
     ];    

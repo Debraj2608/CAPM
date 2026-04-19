@@ -51,7 +51,7 @@ async function placeOrderFails(GET, POST, PATCH, DELETE, expect) {
     Country_code: "US",
     contactNo: "2125551234",
     firstName: "John",
-    lastName: "Smith",
+    lastName: "Smith",  
     email: "john.smith@example.com",
   }
 
