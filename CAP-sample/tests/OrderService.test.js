@@ -1,12 +1,34 @@
 const cds = require('@sap/cds')
+const place_order_succeds = require('./code/test-place-order');
+const place_order_fails = require('./code/test-place-order');
+const cancel_order_succeds = require('./code/test-cancel-order');
+const cancel_order_fails = require('./code/test-cancel-order');
+const create_update_order_succeds = require('./code/test-create-update-order');
 
-const { GET, POST, expect, axios } = cds.test (__dirname+'/..')
-axios.defaults.auth = { username: 'bob', password: 'bob' }
+const { GET, POST, PATCH, DELETE, expect, axios } = cds.test (__dirname+'/..', '--with-mocks')
+// cds.env.requires.auth = {
+//   kind: "dummy"
+// };
 
-describe('OData APIs', () => {
+describe('Catalog service books and manage orders testing', () => {
+  it('place order succeds', async () => {
+    await place_order_succeds.placeOrderSucceds(GET, POST, PATCH, DELETE, expect); //npm test -- -t "place order succeds";
+  });
 
-  it('serves OrderService.Orders', async () => {
+  it('place order fails', async () => {
+    await place_order_fails.placeOrderFails(GET, POST, PATCH, DELETE, expect);
+  });
 
-  })
+  it('cancel order succeds', async () => {
+    await cancel_order_succeds.cancelOrderSucceds(GET, POST, PATCH, DELETE, expect);
+  });
+
+  it('cancel order fails', async () => {
+    await cancel_order_succeds.cancelOrderFails(GET, POST, PATCH, DELETE, expect);
+  });
+
+  it('create or update order succeds', async () => {
+    await create_update_order_succeds.createOrderSucceds(GET, POST, PATCH, DELETE, expect);
+  });
 
 })
