@@ -2,8 +2,24 @@ using my.bookshop as db from '../db/schema';
 
 @path : '/service/OrderService'
 service OrderService {
+
+    annotate Orders with @restrict :
+    [
+        {
+            grant : ['CREATE', 'UPDATE', 'READ', 'placeOrder', 'cancelOrder'], 
+            to: ['User'], 
+            where : 'createdBy = $user'
+        },
+        {
+            grant : [ 'READ' ],
+            to: [ 'Admin' ]
+        }
+    ];    
+
     @odata.draft.enabled : true
-    entity Orders as projection on db.Orders
+    entity Orders as projection on db.Orders {
+        *,
+    } where $user = createdBy
     actions {
         @cds.odata.BindingParameter.name: 'Orders'
         @Common.IsActionCritical
