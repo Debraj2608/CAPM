@@ -23,7 +23,7 @@ service OrderService {
         action cancelOrder();
 
         function downloadPDF()
-            returns String;
+            returns LargeBinary;
     };
 
     @readonly
