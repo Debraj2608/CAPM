@@ -53,6 +53,8 @@ modules:
       commands:
         - npm install
         - npm run build:cf
+        - npm ci
+        - npm run build
       supported-platforms:
         []
   - name: bookshopcreateorders
@@ -64,8 +66,87 @@ modules:
       commands:
         - npm install
         - npm run build:cf
+        - npm ci
+        - npm run build
       supported-platforms:
         []
+
+  - name: CAP-sample-app-deployer
+    type: com.sap.application.content
+    path: gen
+    requires:
+      - name: CAP-sample-auth
+      - name: srv-api
+      - name: CAP-sample-html5-repo-host
+        parameters:
+          content-target: true
+          config:
+            HTML5Runtime_enabled: true
+      - name: CAP-bookshop-repo-host
+    build-parameters:
+      build-result: app/
+      requires:
+        - name: CAPsamplecreateorders
+          artifacts:
+            - createorders.zip
+          target-path: app/
+        - name: CAPsamplemanagebooksandorders
+          artifacts:
+            - managebooksandorders.zip
+          target-path: app/
+        - name: bookshopcreateorders
+        - name: bookshopmanagebooksandorders
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            existing_destinations_policy: update
+            destinations:
+              - Name: srv-api
+                URL: ~{srv-api/srv-url}
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                HTML5.ForwardAuthToken: true
+                HTML5.DynamicDestination: true
+              - Name: ui5
+                URL: https://ui5.sap.com
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+
+  - name: CAP-sample-destinations
+    type: com.sap.application.content
+    requires:
+      - name: CAP-sample-auth
+        parameters:
+          service-key:
+            name: CAP-sample-auth-key
+      - name: CAP-sample-html5-repo-host
+        parameters:
+          service-key:
+            name: CAP-sample-html5-repo-host-key
+      - name: srv-api
+      - name: CAP-sample-destination
+        parameters:
+          content-target: true
+    build-parameters:
+      no-source: true
+    parameters:
+      content:
+        instance:
+          existing_destinations_policy: update
+          destinations:
+            - Name: CAP-sample-html5-repository
+              ServiceInstanceName: CAP-sample-html5-repo-host
+              ServiceKeyName: CAP-sample-html5-repo-host-key
+              sap.cloud.service: CAPsample.service
+            - Name: CAP-sample-auth
+              Authentication: OAuth2UserTokenExchange
+              ServiceInstanceName: CAP-sample-auth
+              ServiceKeyName: CAP-sample-auth-key
+              sap.cloud.service: CAPsample.service
 resources:
   - name: CAP-bookshop-db
     type: com.sap.xs.hdi-container
@@ -97,12 +178,24 @@ resources:
             existing_destinations_policy: update
       service: destination
       service-plan: lite
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
   - name: CAP-bookshop-repo-host
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
       service-name: CAP-bookshop-html5-service
       service-plan: app-host
+  - name: CAP-sample-html5-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true

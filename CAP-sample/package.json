@@ -74,7 +74,9 @@
           }
         }
       },
-      "destinations": true
+      "destinations": true,
+      "html5-repo": true,
+      "workzone": true
     }
   },
   "workspaces": [
