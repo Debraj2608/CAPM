@@ -31,7 +31,7 @@
       "name": "Bookshop-Admin",
       "description": "Role collection for administrators",
       "role-template-references": [
-        "$XSAPPNAME.User"
+        "$XSAPPNAME.Admin"
       ]
     },
     {
@@ -46,7 +46,7 @@
   "oauth2-configuration": {
     "token-validity": 900,
     "credential-types": [
-      "binding secret"
+      "binding-secret"
     ],
     "redirect-uris": [
       "https://**.cfapps.eu10.hana.ondemand.com/**"
