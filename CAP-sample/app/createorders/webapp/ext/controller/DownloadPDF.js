@@ -12,19 +12,26 @@ sap.ui.define([
             const oOrder = oContext.getObject();
             const orderID = oOrder.ID;
             const orderNumber = oOrder.orderNumber || "Order";
+
+            // Get the service base path from the model
+            const oModel = oContext.getModel();
+            const sServiceUrl = oModel.getServiceUrl(); 
+            // sServiceUrl will look like ".../service/OrderService/" 
+
+            // Construct the URL using the base path
+            const sFunctionPath = `${sServiceUrl}Orders(ID=${orderID},IsActiveEntity=true)/downloadPDF()`;
             
             // 2. Define the Function URL
             // Note: Ensure your service name and bound action path are correct
-            const sFunctionPath = `/service/OrderService/Orders(ID=${orderID},IsActiveEntity=true)/downloadPDF()`;
+            //const sFunctionPath = `/service/OrderService/Orders(ID=${orderID},IsActiveEntity=true)/downloadPDF()`;
 
             try {
                 // 3. Trigger the fetch request
-                const oResponse = await fetch(sFunctionPath, {
-                    method: 'GET'
-                });
+                const oResponse = await fetch(sFunctionPath);
 
                 if (!oResponse.ok) {
-                    throw new Error(`HTTP error! status: ${oResponse.status}`);
+                    console.log(`HTTP error! status: ${oResponse.status}`)
+                    MessageToast.show(`HTTP error! status: ${oResponse.status}`);
                 }
 
                 // 4. CRITICAL: Get the response as a Blob, NOT JSON
@@ -55,7 +62,7 @@ sap.ui.define([
 
             } catch (oError) {
                 console.error("PDF Download failed:", oError);
-                MessageToast.error("Failed to generate PDF. Please check after some time.");
+                MessageToast.show("Failed to generate PDF. Please check after some time.");
             }
         }
     };
