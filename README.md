@@ -1,6 +1,6 @@
 # SAP CAP Bookshop Sample Project
 
-A professional demonstration of a bookshop management system built using the SAP Cloud Application Programming Model (CAP). This project implements a full-stack application with a backend service and Fiori-based frontend applications.
+A demonstration of a bookshop management system built using the SAP Cloud Application Programming Model (CAP). This project implements a full-stack application with a backend service and Fiori-based frontend applications.
 
 ## 🚀 Project Structure
 
