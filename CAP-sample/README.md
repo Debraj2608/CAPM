@@ -1,25 +1,46 @@
-# Getting Started
+# Bookshop CAP Application
 
-Welcome to your new project.
+This folder contains the core implementation of the Bookshop management system built using the SAP Cloud Application Programming Model (CAP).
 
-It contains these folders and files, following our recommended project layout:
+## 📚 Application Overview
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
+The application provides a complete flow for managing a book catalog and processing customer orders. It is split into two primary services:
 
+### 1. Catalog Service (`CatalogService`)
+- **Purpose**: Manages the inventory of books and genres.
+- **Access**: Restricted to **Admin** users.
+- **Key Entities**: `Books`, `Orders` (read-only), `OrderStatus`.
+- **Actions**: Includes administrative actions like `confirmOrder`, `shipOrder`, and `deliverOrder`.
 
-## Next Steps
+### 2. Order Service (`OrderService`)
+- **Purpose**: Allows customers to browse available books and place orders.
+- **Access**: Available to **User** roles.
+- **Key Features**:
+  - Order placement and cancellation.
+  - User-specific order history (users can only see their own orders).
+  - **PDF Generation**: A custom function `downloadPDF` to generate order summaries.
 
-- Open a new terminal and run `cds watch`
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
+## 📂 Project Layout
 
+- **`db/`**: Contains the data model (`schema.cds`) defining the relationship between books, orders, and logs.
+- **`srv/`**: Contains the service definitions and custom logic for the OData APIs.
+- **`app/`**: Contains the SAP Fiori UI applications:
+  - `managebooksandorders`: Admin portal for inventory and order tracking.
+  - `createorders`: Customer portal for purchasing books.
 
-## Learn More
+## 🛠️ Development Quick Start
 
-Learn more at https://cap.cloud.sap/docs/get-started/.
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Start the project**:
+   ```bash
+   cds watch
+   ```
+
+3. **Test with Mock Users**:
+   The project is configured with mocked authentication for development:
+   - `admin` / `admin` (Admin & User roles)
+   - `user` / `user` (User role)
