@@ -7,9 +7,9 @@ This folder contains the core implementation of the Bookshop management system b
 The application provides a complete flow for managing a book catalog and processing customer orders. It is split into two primary services:
 
 ### 1. Catalog Service (`CatalogService`)
-- **Purpose**: Manages the inventory of books and genres.
+- **Purpose**: Manages the inventory of books and genres. It is also used to manage customer orders.
 - **Access**: Restricted to **Admin** users.
-- **Key Entities**: `Books`, `Orders` (read-only), `OrderStatus`.
+- **Key Entities**: `Books`, `Orders` (read-only), `OrderStatus`(read-only).
 - **Actions**: Includes administrative actions like `confirmOrder`, `shipOrder`, and `deliverOrder`.
 
 ### 2. Order Service (`OrderService`)
