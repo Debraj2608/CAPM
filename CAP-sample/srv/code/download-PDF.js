@@ -1,12 +1,15 @@
 const path = require('path');
 const PDFDocument = require('pdfkit');
+const { PassThrough, Readable } = require('stream');
 
 const downloadPDF = async function (request) {
     const requestID = request.params[0].ID;
     
     // Fetch Order details
     const orderDetails = await SELECT.one.from('my.bookshop.Orders').where({ ID: requestID });
-    if (!orderDetails) request.error(404, 'Order not found.');
+    if (!orderDetails){
+        return request.error(500, 'Order not found.');
+    }
 
     const {
         firstName,
@@ -24,16 +27,13 @@ const downloadPDF = async function (request) {
         .columns('quantity', 'netprice', 'book.title as bookTitle')
         .where({ order_ID: orderDetails.ID });
 
-    const pdfBuffer = await new Promise((resolve, reject) => {
+    
         const doc = new PDFDocument({
             size: 'A4',
             margins: { top: 50, bottom: 50, left: 50, right: 50 },
         });
-        const chunks = [];
-
-        doc.on('data', chunk => chunks.push(chunk));
-        doc.on('end', () => resolve(Buffer.concat(chunks)));
-        doc.on('error', reject);
+        const passthroughStream = new PassThrough();
+        doc.pipe(passthroughStream);
 
         // Header Image/Logo area
         try {
@@ -109,18 +109,29 @@ const downloadPDF = async function (request) {
            .text('Thank you for shopping with our Bookshop!', 50, 750, { align: 'center', width: 495 });
 
         doc.end();
-    });
 
-    const fileName = `Invoice_${orderNumber || requestID}.pdf`;
-    const response = request.http?.res || request._?.res;
-    if (response) {
-        response.setHeader('Content-Type', 'application/pdf');
-        response.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
-        response.end(pdfBuffer);
-        return;
-    }
+        //Convert Stream to buffer
+        const readableStream = Readable.from(passthroughStream);
+        function streamToBuffer(readableStream){
+            return new Promise((resolve, reject) => {
+                const buf = [];
+                readableStream.on("data", (chunk) => buf.push(chunk));
+                readableStream.on("end", () => resolve(Buffer.concat(buf)));
+                readableStream.on("error", (err) => reject(err));
+            })
+        }
 
-    return pdfBuffer;
+        let myBuffer;
+        await streamToBuffer(readableStream)
+        .then((buffer) => {
+            myBuffer = buffer;
+        })
+        .catch((err) => {
+            console.error(err);
+        })
+
+
+    return myBuffer.toString("base64");
 }
 
 module.exports = downloadPDF;
